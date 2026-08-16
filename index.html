@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Bullet Journal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Dancing+Script:wght@700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="site-title">graces</div>
+ 
+  <div class="page-wrap">
+    <h2 class="journal-title" id="journalTitle" contenteditable="true" spellcheck="false">friend's bullet journal</h2>
+ 
+    <div class="scene">
+      <button class="page-arrow" id="prevPage" type="button" aria-label="previous page">&#10094;</button>
+ 
+      <div class="book" id="book">
+        <div class="page-edges-bottom"></div>
+ 
+        <div class="spread" id="spread-main">
+          <div class="page left-page">
+            <h1 id="date"></h1>
+            <div class="streak">streak: <span id="streakCount">0</span></div>
+ 
+            <h2>mood</h2>
+            <div class="mood-picker">
+              <button class="mood-dot" type="button" data-mood="1"></button>
+              <button class="mood-dot" type="button" data-mood="2"></button>
+              <button class="mood-dot" type="button" data-mood="3"></button>
+              <button class="mood-dot" type="button" data-mood="4"></button>
+              <button class="mood-dot" type="button" data-mood="5"></button>
+            </div>
+ 
+            <div id="extraTrackers"></div>
+ 
+            <h2>habits</h2>
+            <div id="habitsList"></div>
+ 
+            <h2>journal entry</h2>
+            <textarea id="journalText" placeholder="click to type journal entry..."></textarea>
+ 
+            <button id="saveBtn" type="button">save today's entry</button>
+          </div>
+ 
+          <div class="spine"></div>
+ 
+          <div class="page right-page">
+            <h2>exercise</h2>
+            <div class="exercise-row">
+              <span>&#128694;</span>
+              <input type="number" id="exerciseMinutes" min="0" placeholder="0"> min
+            </div>
+            <div class="segbar" id="exerciseBar">
+              <div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            </div>
+            <textarea id="exerciseNote" class="note-input" placeholder="exercise log"></textarea>
+ 
+            <h2>to-do</h2>
+            <div class="add-habit-row">
+              <input type="text" id="newTodoInput" placeholder="add a task">
+              <button id="addTodoBtn" type="button">+</button>
+            </div>
+            <div id="todoList" class="todo-list"></div>
+ 
+            <div class="companion-area">
+              <div class="speech-bubble" id="graceMessage">hi! log today and i'll say hi back</div>
+              <div class="grace stage-1">
+                <div class="flower"></div>
+                <div class="leaf-top"></div>
+                <div class="leaf-mound"></div>
+                <div class="eye eye-l"></div>
+                <div class="eye eye-r"></div>
+                <div class="mouth"></div>
+                <div class="cheek cheek-l"></div>
+                <div class="cheek cheek-r"></div>
+                <div class="stem"></div>
+                <div class="pot"></div>
+              </div>
+            </div>
+ 
+            <div class="level-row">
+              <span>lvl <span id="levelNum">1</span></span>
+              <div class="segbar" id="levelBar">
+                <div></div><div></div><div></div><div></div><div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+ 
+        <div class="spread" id="spread-settings" style="display:none">
+          <div class="page left-page">
+            <h1>customize habits</h1>
+ 
+            <h2>add a habit</h2>
+            <div class="add-habit-row">
+              <input type="text" id="newHabitInput" placeholder="e.g. drink water">
+              <button id="addHabitBtn" type="button">+</button>
+            </div>
+ 
+            <h2>your habits</h2>
+            <div id="habitsSettingsList"></div>
+          </div>
+ 
+          <div class="spine"></div>
+ 
+          <div class="page right-page">
+            <h1>your trackers</h1>
+ 
+            <h2>add a tracker</h2>
+            <div class="add-habit-row">
+              <input type="text" id="newTrackerInput" placeholder="e.g. focus, social battery">
+              <button id="addTrackerBtn" type="button">+</button>
+            </div>
+ 
+            <h2>tracking</h2>
+            <div id="trackerSettingsList"></div>
+            <p class="hint-text">these show up under mood on your daily page.</p>
+          </div>
+        </div>
+ 
+        <div class="spread" id="spread-goals" style="display:none">
+          <div class="page left-page">
+            <h1>goals</h1>
+ 
+            <h2>add a goal</h2>
+            <div class="add-habit-row">
+              <input type="text" id="newGoalInput" placeholder="e.g. read 12 books">
+              <input type="number" id="newGoalTarget" min="1" placeholder="# (optional)">
+              <button id="addGoalBtn" type="button">+</button>
+            </div>
+ 
+            <h2>your goals</h2>
+            <div id="goalsList"></div>
+          </div>
+ 
+          <div class="spine"></div>
+ 
+          <div class="page right-page">
+            <h2>progress</h2>
+            <p class="hint-text" id="goalsProgressText"></p>
+          </div>
+        </div>
+ 
+        <div class="spread" id="spread-weekly" style="display:none">
+          <div class="page left-page">
+            <h1>this week</h1>
+            <div class="recap-box" id="weeklyRecapBox">
+              <div class="recap-label">grace's recap</div>
+              <p id="weeklyRecapText"></p>
+            </div>
+            <h2>mood</h2>
+            <div class="week-strip" id="weekMoodStrip"></div>
+            <p class="hint-text" id="weekAvgMoodText"></p>
+            <p class="hint-text" id="weekInsightText"></p>
+          </div>
+ 
+          <div class="spine"></div>
+ 
+          <div class="page right-page">
+            <h2>habits</h2>
+            <div class="segbar" id="weekHabitsBar">
+              <div></div><div></div><div></div><div></div><div></div>
+            </div>
+            <p class="hint-text" id="weekHabitsText"></p>
+ 
+            <h2>exercise</h2>
+            <p class="hint-text" id="weekExerciseText"></p>
+ 
+            <h2>streak</h2>
+            <p class="hint-text" id="weekStreakText"></p>
+          </div>
+        </div>
+ 
+        <div class="spread" id="spread-monthly" style="display:none">
+          <div class="page left-page">
+            <h1>habit grid</h1>
+            <div class="month-label" id="monthGridLabel"></div>
+            <div class="habit-grid-wrap">
+              <table class="habit-grid" id="habitGridTable"></table>
+            </div>
+            <p class="hint-text">scroll to see the full month &rarr;</p>
+          </div>
+ 
+          <div class="spine"></div>
+ 
+          <div class="page right-page">
+            <h1>mood calendar</h1>
+            <div class="mood-calendar" id="moodCalendarGrid"></div>
+            <div class="mood-legend" id="moodLegend"></div>
+          </div>
+        </div>
+      </div>
+ 
+      <button class="page-arrow" id="nextPage" type="button" aria-label="next page">&#10095;</button>
+    </div>
+  </div>
+ 
+  <script src="script.js"></script>
+</body>
+</html>
+ 
+
+
+
+
+
+
+
+
+
+
+
+
